@@ -1,0 +1,54 @@
+﻿@page
+@model Front_Test.Pages.ManageModel
+@{
+    ViewData["Title"] = "مدیریتی";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p style="color: red">مدیریت کاربران</p>
+<p style="color: red">اطلاعات کاربر داخل توکن</p>
+@*<a asp asp-page-handler="BankList"> دریافت لیست بانکها</a>*@
+
+@{
+    if (Model.BankList!=null)
+    {
+        foreach (var item in Model.BankList)
+        {
+            <h3>@item</h3>
+        }
+    }
+}
+
+ <table class="table">
+    <thead>
+      <tr>
+        <th>Claim</th>
+        <th>Value</th>
+
+      </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in User.Claims)
+        {
+           <tr>
+            <td>@item.Type</td>
+                @if (@item.Type.Contains("Info"))
+                {
+                    <td><blockquote >@item.Value</blockquote></td>
+
+                }else
+                {
+                    <td >@item.Value</td>
+                        
+                }
+            
+          </tr>
+        }
+      
+    </tbody>
+  </table>
+
+@*<script>
+    $("pre").html(JSON.stringify(json, undefined, 2));
+</script>*@
